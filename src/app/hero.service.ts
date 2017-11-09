@@ -65,7 +65,7 @@ export class HeroService {
       return of([]);
     }
     return this.http.get<Hero[]>(`api/heroes/?name=${term}`).pipe(
-      tap(_ => this.log(`found heroes matching "${term}"`)),
+      tap(_ => this.log(`found heroes matching: "${term}"`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
@@ -73,7 +73,7 @@ export class HeroService {
 
 
   private log(message: string) {
-    this.messageService.add('HeroService' + message);
+    this.messageService.add('HeroService ' + message);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
